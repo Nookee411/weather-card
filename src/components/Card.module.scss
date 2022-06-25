@@ -1,0 +1,170 @@
+:root {
+  --cloud1-animation-duration: 20s;
+  --cloud2-animation-duration: 15s;
+  --cloud3-animation-duration: 9s;
+}
+
+.card {
+  overflow: hidden;
+  position: relative;
+  border-radius: 16px;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.5) 50%, rgba(255, 255, 255, 0) 100%);
+  box-shadow: 9px 7px 40px -6px rgb(0 0 0 / 25%);
+  width: 373px;
+  height: 600px;
+}
+
+.wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.content {
+  z-index: 1000;
+  padding: 2rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  font-weight: 100;
+}
+
+.svg {
+  z-index: -1;
+  position: absolute;
+  inset: 0 0 0 0;
+  fill: pink;
+
+  &.cloudy {
+    .sun {
+      transform: translate(100px, 100px);
+    }
+  }
+
+  &.sunny{
+    .clouds {
+      transform: translateY(-40%);
+    }
+    .sun {
+      transform: translate(50%, 50%);
+    }
+  } 
+  &.rainy {
+    .sun {
+      transform: translate(100px, -100%);
+    }
+  }
+}
+
+.clouds {
+  transition: transform 1s ease-in-out;
+}
+
+.temperature {
+  position: relative;
+  font-size: 4rem;
+  line-height: 0.75;
+
+  &::after {
+    content: "C";
+    font-size: 1rem;
+    line-height: 1rem;
+    position: absolute;
+    top:0;
+  }
+}
+
+.data { 
+  font-size: 1.125rem;
+  font-weight: 300;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.cloud1 {
+  fill: hsl(0 0 70%);
+  animation: float var(--cloud1-animation-duration) linear infinite;
+}
+.cloud2 {
+  fill: hsl(0 0 88%);
+
+  animation: float2 var(--cloud2-animation-duration) linear infinite;
+}
+.cloud3 {
+  fill: hsl(0 0 100%);
+  animation: float3 var(--cloud3-animation-duration) linear infinite;
+}
+
+.rays {
+    transform-origin: center;
+    animation: blinking 1s ease-in-out infinite alternate,
+               rotation 2s ease-in-out infinite alternate;
+}
+
+.sun {
+  transition: transform 1s ease-in-out;
+  &>svg {
+    fill: #f4f437;
+  }
+}
+
+.rain {
+  animation: rain 1s linear;
+}
+
+@keyframes rain {
+  to {
+    transform: translateY(100%);
+  }
+}
+
+@keyframes blinking {
+  to {
+    opacity: .5;
+  }
+}
+
+@keyframes rotation {
+  to {
+    transform: rotate(10deg);
+  }
+}
+
+
+@keyframes float {
+  from {
+    transform: translateX(-700px);
+
+  }
+
+  to {
+    transform: translateX(-100px);
+  }
+}
+
+
+
+@keyframes float2 {
+  from {
+    transform: translateX(-760px);
+
+  }
+
+  to {
+    transform: translateX(-160px);
+  }
+}
+
+@keyframes float3 {
+  from {
+    transform: translateX(-600px);
+
+  }
+
+  to {
+    transform: translateX(0px);
+  }
+}
